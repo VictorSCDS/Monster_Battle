@@ -1,35 +1,10 @@
 import customtkinter as ctk
-import tkinter.messagebox as msgbox
 import pygame
 import numpy as np
 from PIL import Image
+from monsters import pokemons, Pokemon
+from config import type_chart, AUDIO_PATH, IMAGES
 
-ctk.set_appearance_mode("dark")
-ctk.set_default_color_theme("dark-blue")
-
-class Pokemon:
-    def __init__(self, name, types, moves, EVs):
-        self.name = name
-        self.types = types
-        self.moves = moves
-        self.base_attack = EVs['ATTACK']
-        self.base_defense = EVs['DEFENSE']
-        self.attack = self.base_attack
-        self.defense = self.base_defense
-        self.bars = 50
-
-    def reset_stats(self):
-        self.attack = self.base_attack
-        self.defense = self.base_defense
-        self.bars = 50
-
-pokemons = {
-    "Charizard": Pokemon('Charizard', 'Fire', ['Flamethrower', 'Fly', 'Blast Burn', 'Fire Punch'], {'ATTACK': 12, 'DEFENSE': 8}),
-    "Blastoise": Pokemon('Blastoise', 'Water', ['Water Gun', 'Bubblebeam', 'Hydro Pump', 'Surf'], {'ATTACK': 10, 'DEFENSE': 10}),
-    "Venusaur": Pokemon('Venusaur', 'Grass', ['Vine Whip', 'Razor Leaf', 'Earthquake', 'Sludge Bomb'], {'ATTACK': 8, 'DEFENSE': 12}),
-}
-
-type_chart = ['Fire', 'Water', 'Grass']
 
 class PokemonBattleApp(ctk.CTk):
     def __init__(self):
@@ -209,9 +184,3 @@ class PokemonBattleApp(ctk.CTk):
             widget.destroy()
         self.combo1.set(list(pokemons.keys())[0])
         self.combo2.set(list(pokemons.keys())[1])
-
-
-
-if __name__ == "__main__":
-    app = PokemonBattleApp()
-    app.mainloop()
